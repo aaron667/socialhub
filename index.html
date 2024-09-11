@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal site to access social networks">
+    <title>SocialHub</title>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Стили для заголовка и баннера */
+        header {
+            width: 100%;
+            text-align: center;
+            background-image: url('https://images.unsplash.com/photo-1492088040246-7d8b7f35c2f5');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            padding: 50px 0;
+            border-bottom: 2px solid #ffffff;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateY(-100px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        /* Стили для иконок */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #ffffff;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #1f1f1f;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: zoomIn 0.8s ease-in-out;
+        }
+
+        @keyframes zoomIn {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .icon:hover {
+            background-color: #333333;
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .youtube { color: #FF0000; }
+        .instagram { color: #E1306C; }
+        .tiktok { color: #69C9D0; }
+        .twitter { color: #1DA1F2; }
+        .reddit { color: #FF4500; }
+        .twitch { color: #6441A4; }
+
+        /* Стили для футера */
+        footer {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #cccccc;
+            text-align: center;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>SocialHub</h1>
+    </header>
+    <main>
+        <div class="social-icons">
+            <a href="https://www.youtube.com" class="icon youtube" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com" class="icon instagram" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com" class="icon tiktok" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.twitter.com" class="icon twitter" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.reddit.com" class="icon reddit" target="_blank" aria-label="Reddit"><i class="fab fa-reddit"></i></a>
+            <a href="https://www.twitch.tv" class="icon twitch" target="_blank" aria-label="Twitch"><i class="fab fa-twitch"></i></a>
+        </div>
+    </main>
+    <footer>
+        <p id="ip-address">Your IP: Loading...</p>
+    </footer>
+    <script>
+        // Минифицированный JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('ip-address').textContent = 'Your IP: ' + data.ip;
+                })
+                .catch(error => {
+                    console.error('Error fetching IP address:', error);
+                    document.getElementById('ip-address').textContent = 'Failed to load IP';
+                });
+        });
+    </script>
+</body>
+</html>
